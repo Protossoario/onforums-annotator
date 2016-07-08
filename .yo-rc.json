@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "annotator",
+    "style": "sass",
+    "postcss": true
+  }
+}
