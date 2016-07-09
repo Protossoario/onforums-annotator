@@ -1,21 +1,36 @@
 /* Base Application Styles */
 body {
-  color: #fff;
-  background: #222;
-}
-
-.index img {
-  margin: 40px auto;
-  border-radius: 4px;
-  background: #fff;
-  display: block;
+    color: #fff;
+    background: #FDE3A7;
 }
 
 .index .notice {
-  margin: 20px auto;
-  padding: 15px 0;
-  text-align: center;
-  border: 1px solid #000;
-  border-width: 1px 0;
-  background: #666;
+    margin: 20px auto;
+    padding: 15px 0;
+    text-align: center;
+    border: 1px solid #000;
+    border-width: 1px 0;
+    background: #666;
+}
+
+.buttons {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    background: #FDE3A7;
+    height: 10vh;
+}
+
+.posts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 90vh;
+    padding: 0
+}
+
+svg {
+    margin: 0.5vw
 }

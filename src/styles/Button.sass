@@ -1,0 +1,69 @@
+@mixin transform($val)
+  -webkit-transform: $val
+  -moz-transform: $val
+  -ms-transform: $val
+  transform: $val
+
+.button-component
+    display: flex
+    align-items: center
+    justify-content: center
+    margin: 5px
+    border-radius: 10px
+    font-size: 2.5vh
+    color: #FFF
+    text-decoration: none !important
+    text-align: center
+    flex-grow: 2
+
+.button-component:active
+    border-bottom: 0
+
+.blue
+    background-color: #89C4F4
+    border-bottom: 5px solid #22A7F0
+    text-shadow: 0px 2px #22A7F0
+
+.blue:active
+    text-shadow: 1px 0px #22A7F0
+
+.red
+    background-color: #F64747
+    border-bottom: 5px solid #D91E18
+    text-shadow: 0px 2px #D91E18
+
+.red:active
+    text-shadow: 1px 0px #D91E18
+
+.yellow
+    background-color: #F9BF3B
+    border-bottom: 5px solid #F39C12
+    text-shadow: 0px 2px #F39C12
+
+.yellow:active
+    text-shadow: 1px 0px #F39C12
+
+.gray
+    color: #5A5A5A
+    background-color: #ECF0F1
+    border-bottom: 5px solid #BDC3C7
+    text-shadow: 0px 1px #BDC3C7
+
+.gray:active
+    text-shadow: 0px 0px #BDC3C7
+
+.purple
+    background-color: #DCC6E0
+    border-bottom: 5px solid #BE90D4
+    text-shadow: 0px 2px #BE90D4
+
+.purple:active
+    text-shadow: 1px 0px #BE90D4
+
+.action-button:hover, .action-button:link, .action-button:visited, .action-button:active
+    color: #fff
+
+.action-button:active
+	border-bottom: 1px solid
+    margin-bottom: 14px
+    @include transform(translate(0px, 5px))

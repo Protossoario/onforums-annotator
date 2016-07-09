@@ -68,8 +68,12 @@
     "alt": "^0.18.4",
     "alt-container": "^1.0.2",
     "core-js": "^2.0.0",
+    "mongodb": "^2.2.0",
+    "mongoose": "^4.5.3",
     "normalize.css": "^3.0.3",
     "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react-dom": "^0.14.0",
+    "react-icons": "^2.2.0",
+    "superagent": "^2.0.0"
   }
 }
