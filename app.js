@@ -27,13 +27,49 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/annotation', function(req, res) {
     // retrieve next annotation from mongodb in "annotations" collection
-    Annotation.findOne({ label: { '$exists': false } }, function(err, annotation) {
+    Annotation.aggregate(
+    [{
+        $group: {
+            _id: {
+                artId: '$artId',
+                comId: '$comId'
+            },
+            labels: {
+                $addToSet: '$label'
+            }
+        }
+    },
+    {
+        $match: {
+            _id: {
+                $ne: null
+            },
+            labels: {
+                $size: 0
+            }
+        }
+    },
+    {
+        $project: {
+            pair: "$_id",
+            _id: 0,
+            labels: 1
+        }
+    }], function(err, results) {
         if (err) {
             res.status(403);
             res.send('DB Error: ' + err);
             return;
         }
-        res.json(annotation);
+        var result = results[0];
+        Annotation.findOne({ artId: result.pair.artId, comId: result.pair.comId }, function(err, annotation) {
+            if (err) {
+                res.status(403);
+                res.send('DB Error: ' + err);
+                return;
+            }
+            res.json(annotation);
+        });
     });
 });
 
@@ -52,19 +88,48 @@ app.put('/annotation', function(req, res) {
             res.send('DB Error: ' + err);
             return;
         }
-        Annotation.findOne({
-            label: { '$exists': false },
-            '$or': [
-                { artId: { '$ne': artId } },
-                { comId: { '$ne': comId } }
-            ]
-        }, function(err, annotation) {
+        Annotation.aggregate([{
+            $group: {
+                _id: {
+                    artId: '$artId',
+                    comId: '$comId'
+                },
+                labels: {
+                    $addToSet: '$label'
+                }
+            }
+        },
+        {
+            $match: {
+                _id: {
+                    $ne: null
+                },
+                labels: {
+                    $size: 0
+                }
+            }
+        },
+        {
+            $project: {
+                pair: "$_id",
+                _id: 0,
+                labels: 1
+            }
+        }], function(err, results) {
             if (err) {
                 res.status(403);
                 res.send('DB Error: ' + err);
                 return;
             }
-            res.json(annotation);
+            var result = results[0];
+            Annotation.findOne({ artId: result.pair.artId, comId: result.pair.comId }, function(err, annotation) {
+                if (err) {
+                    res.status(403);
+                    res.send('DB Error: ' + err);
+                    return;
+                }
+                res.json(annotation);
+            });
         });
     });
 });
